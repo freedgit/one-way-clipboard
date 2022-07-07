@@ -34,12 +34,16 @@ function copy_to_remote_clipboard() {
 
 function load_defaults() {
     content = localStorage.getItem("clipboard");
-    document.getElementById("textarea").innerHTML = content;
+    if (content == null) {
+        content = "";
+    }
+    textarea = document.getElementById("textarea");
+    textarea.innerHTML = content;
 }
 
 function sub_load_request() {
     var xr = new XMLHttpRequest();
-    var other_port = window.location.origin + ":9999";
+    var other_port = window.location.origin;
     xr.addEventListener("load", reqListener)
     xr.open("GET", other_port);
     xr.send();
@@ -69,7 +73,7 @@ function load_request_old() {
         
         setTimeout(function() {
             var xr = new XMLHttpRequest();
-            var other_port = window.location.origin + ":9999";
+            var other_port = window.location.origin;
             xr.addEventListener("load", reqListener)
             xr.open("GET", other_port);
             xr.send();
@@ -90,6 +94,6 @@ function load_request_old() {
     console.log("getting out of the loop");
 }
 
-load_defaults();
+// load_defaults();
 
-load_request();
+// load_request();

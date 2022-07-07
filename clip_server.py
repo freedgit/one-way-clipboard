@@ -12,6 +12,12 @@ def show_form():
 
     return r
 
+def read_js():
+    with open("funcs.js", "r") as f:
+        r = f.read()
+
+    return r
+
 def get_file():
     paths = get_paths()
 
@@ -75,6 +81,12 @@ def form():
 
     response = make_response(show_form(), 200)
     response.mimetype = "text/html"
+    return response
+
+@app.route("/form/funcs.js", methods=["GET"])
+def return_js():
+    response = make_response(read_js(), 200)
+    response.mimetype = "application/javascript"
     return response
 
 if __name__ == "__main__":
