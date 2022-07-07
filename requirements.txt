@@ -1,3 +1,4 @@
-pyperclip
+clipboard
 requests
 simplejson
+flask
