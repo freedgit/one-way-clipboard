@@ -8,17 +8,12 @@ function reqListener () {
     var jsonString = this.responseText;
     var obj = jQuery.parseJSON(jsonString);
     
-    console.log(obj);
-    
     if (obj.type == "url") {
         window.open(obj.content, '_blank');
     } else if (obj.type == "content") {
         document.getElementById("textarea").innerHTML = obj.content;
         localStorage.setItem("clipboard", obj.content);
     }
-    
-    console.log(obj.type);
-    console.log(obj.content);
 }
 
 function copy_to_clipboard() {
@@ -80,20 +75,9 @@ function load_request_old() {
 
             counterino++;
             
-            console.log(xr);
-            console.log(counterino);
-
             if (counterino == MAX_STUFF) {
-                console.log("I was supposed to reload");
                 window.location = window.location;
-                // window.location.reload();
             }
         }, WAITING_FOR * loop);
     }
-
-    console.log("getting out of the loop");
 }
-
-// load_defaults();
-
-// load_request();
